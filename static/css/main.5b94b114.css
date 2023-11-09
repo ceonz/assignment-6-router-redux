@@ -1,0 +1,2 @@
+*{box-sizing:border-box;margin:0;padding:0}.image-grid{grid-gap:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));padding:1rem;place-items:center}.image-grid>img{aspect-ratio:1/1;border-radius:.5rem;cursor:pointer;object-fit:contain;width:100%}.cat-breed{font-size:50px}
+/*# sourceMappingURL=main.5b94b114.css.map*/
