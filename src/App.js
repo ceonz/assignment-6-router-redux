@@ -5,11 +5,23 @@ export default function App() {
   const [catImages, setCatImages] = useState([]);
   const [breed, setBreed] = useState('ex. beng ( only include first 4 letters )');
   const [favorites, setFavorites] = useState([]);
+  const [voteHistory, setVoteHistory] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
+    getVoteImages();
     getFavorites().then(setFavorites);
   }, []);
 
+  function getCatImages() {
+    fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+      .then((response) => response.json())
+      .then((data) => {
+        setCatImages(data);
+        setCurrentImageIndex(0);
+      });
+  }
+  
   function getSubId() {
     let subId = localStorage.getItem('sub_id');
     if (!subId) {
@@ -23,12 +35,6 @@ export default function App() {
 
   function handleBreedChange(e) {
     setBreed(e.target.value);
-  }
-
-  function getCatImages() {
-    fetch('https://api.thecatapi.com/v1/images/search?limit=10')
-      .then((response) => response.json())
-      .then((data) => setCatImages(data));
   }
   
   function getCatBreedImages() {
@@ -61,10 +67,30 @@ export default function App() {
     }
   }
 
+  const vote = (catId, value) => {
+    const imageUrl = catImages.find(cat => cat.id === catId)?.url;
+    setVoteHistory([...voteHistory, { catId, value, imageUrl }]);
+    showNextImage();
+  };
+
+  const showNextImage = () => {
+    setCurrentImageIndex((prevIndex) => prevIndex + 1);
+  };
 
   return (
     <main className="container">
       <button onClick={getCatImages}>Get Cat Images</button>
+      <div className="image-grid">
+        {catImages.map((catImage) => (
+          <img
+            key={catImage.id}
+            src={catImage.url}
+            alt="Random cat"
+            width="300"
+            height="300"
+          />
+        ))}
+      </div>
       <label>
         Find Picture of Specific Cat Breeds:
         <input onChange={handleBreedChange} value={breed} />
@@ -104,6 +130,52 @@ export default function App() {
           </div>
         ))}
       </div>
+      <h2>Voting</h2>
+      <div className="vote-grid">
+        {catImages.length === 0 && (
+          <button onClick={getCatImages}>Start Voting</button>
+        )}
+        {catImages.length > 0 && catImages[currentImageIndex] && (
+          <div key={catImages[currentImageIndex].id} className="voting-card">
+            <img
+              src={catImages[currentImageIndex].url}
+              alt="Random cat"
+              width="300"
+              height="300"
+              className=""
+            />
+            <div>
+              <button onClick={() => vote(catImages[currentImageIndex].id, 1)}>Like</button>
+              <button onClick={() => vote(catImages[currentImageIndex].id, -1)}>Dislike</button>
+            </div>
+          </div>
+        )}
+        {catImages.length > 0 && currentImageIndex >= catImages.length && (
+          <div>
+            <p>No more images to vote on. Fetch more?</p>
+            <button onClick={getCatImages}>Fetch More</button>
+          </div>
+        )}
+      </div>
+      <div>
+        <h2>Vote History</h2>
+        <ol>
+          {voteHistory.map((vote, index) => (
+            <li key={index}>
+              {vote.imageUrl && (
+                <img
+                  src={vote.imageUrl}
+                  alt={`Cat ${index + 1}`}
+                  width="50"
+                  height="50"
+                  className={vote.value > 0 ? 'liked' : 'disliked'}
+                />
+              )}
+              {vote.value > 0 ? ' Liked' : ' Disliked'}
+            </li>
+          ))}
+        </ol>
+      </div>
     </main>
   );
-}
+}  
