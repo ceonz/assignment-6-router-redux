@@ -31,7 +31,7 @@ Initially, unfavoriting images was not intuitive as it required finding the favo
 ### API Name: Filter by Breed
 
 Successful API call in Postman
-![Successful API call in Postman](https://imgur.com/a/DubsuNT.png)
+![Successful API call in Postman](https://i.imgur.com/Yywtd6X.png)
 
 ### API Documentation: [TheCatAPI Favourites Documentation](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=gpN-ReBkp)
 
