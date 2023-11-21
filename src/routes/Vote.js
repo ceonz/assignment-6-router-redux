@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { castVote, setCurrentImageIndex } from '../imagesSlice';
+import { castVote} from '../features/imagesSlice';
 
 
 export default function Vote(){
