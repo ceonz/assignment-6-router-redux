@@ -7,6 +7,8 @@ import List from './routes/List';
 import Vote from './routes/Vote';
 import Favorites from './routes/Favorites';
 import ListItem from './routes/ListItem';
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 const router = createHashRouter([
   {
@@ -38,3 +40,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
