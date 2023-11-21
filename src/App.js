@@ -66,13 +66,13 @@ export default function App() {
     }
   }
 
-  const vote = (catId, value) => {
+  function vote(catId, value) {
     const imageUrl = catImages.find(cat => cat.id === catId)?.url;
     setVoteHistory([...voteHistory, { catId, value, imageUrl }]);
     showNextImage();
   };
 
-  const showNextImage = () => {
+  function showNextImage(){
     setCurrentImageIndex((prevIndex) => prevIndex + 1);
   };
 

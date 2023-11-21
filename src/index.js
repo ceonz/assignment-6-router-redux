@@ -24,7 +24,7 @@ const router = createHashRouter([
         element: <ListItem />
       },
       {
-        path: "/about",
+        path: "/vote",
         element: <Vote />
       },
       {
