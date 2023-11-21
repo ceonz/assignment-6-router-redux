@@ -16,15 +16,19 @@ function request(endpoint, options = {}) {
     .then(res => res.json())
 }
 
-function getAllImages(limit = 10) {
+export function getAllImages(limit = 10) {
   return request(`/images/search?limit=${limit}`)
 }
 
-function getMyUploadedImages() {
+export function getImage(id) {
+  return request(`/images/${id}`)
+}
+
+export function getMyUploadedImages() {
   return request(`/images`)
 }
 
-function uploadImage(file) {
+export function uploadImage(file) {
   const formData = new FormData();
   formData.append("file", file);
   return request(`/images/upload`, {
@@ -36,25 +40,25 @@ function uploadImage(file) {
   })
 }
 
-function deleteImage(id) {
+export function deleteImage(id) {
   return request(`/images/${id}`, {
     method: "DELETE",
   })
 }
 
-function getVotes() {
+export function getVotes() {
   return request(`/votes`)
 }
 
-function getRandomFacts() {
+export function getRandomFacts() {
   return request(`/facts`)
 }
 
-function getFavorites() {
+export function getFavorites() {
   return request(`/favourites`);
 }
 
-function createFavorite(imageId, subId) {
+export function createFavorite(imageId, subId) {
   const payload = {
     image_id: imageId,
     sub_id: subId
@@ -65,10 +69,9 @@ function createFavorite(imageId, subId) {
   });
 }
 
-function deleteFavorite(favouriteId) {
+export function deleteFavorite(favouriteId) {
   return request(`/favourites/${favouriteId}`, {
     method: 'DELETE',
   });
 }
 
-export { getAllImages, getMyUploadedImages, uploadImage, deleteImage, getVotes, getRandomFacts, getFavorites, createFavorite, deleteFavorite };
