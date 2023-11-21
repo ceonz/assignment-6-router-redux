@@ -6,6 +6,7 @@ export const imagesSlice = createSlice({
     catImages: [], 
     currentImageIndex: 0,
     favorites: [],
+    votes: [],
   },
   reducers: {
     incrementImageIndex: state => {
@@ -20,9 +21,15 @@ export const imagesSlice = createSlice({
     removeFavorite: (state, action) => {
       state.favorites = state.favorites.filter(fav => fav.id !== action.payload);
     },
+
+    castVote: (state, action) => {
+      state.votes.push(action.payload);
+    },
+
+
   }
 });
 
-export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite } = imagesSlice.actions;
+export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite, castVote } = imagesSlice.actions;
 
 export default imagesSlice.reducer;

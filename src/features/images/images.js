@@ -39,3 +39,33 @@ export function handleCreateFavorite(){
     </div>
   )
 }
+
+export function HandleVote() {
+  const catImages = useSelector((state) => state.images.catImages);
+  const currentImageIndex = useSelector((state) => state.images.currentImageIndex);
+  const dispatch = useDispatch();
+
+  const handleVote = (value) => {
+    const currentCat = catImages[currentImageIndex];
+    if (currentCat) {
+      dispatch(castVote({
+        catId: currentCat.id,
+        value,
+        imageUrl: currentCat.url,
+      }));
+    }
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => handleVote(1)}>
+          Like
+        </button>
+        <button onClick={() => handleVote(-1)}>
+          Dislike
+        </button>
+      </div>
+    </div>
+  );
+}
