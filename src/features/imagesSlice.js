@@ -5,14 +5,18 @@ export const imagesSlice = createSlice({
   initialState: {
     catImages: [], 
     currentImageIndex: 0,
+    favorites: [],
   },
   reducers: {
     incrementImageIndex: state => {
       state.currentImageIndex = (state.currentImageIndex + 1)% state.catImages.length;
     },
+    addFavorite: state => {
+      state.favorites.push(action.payload);
+    },
   }
 });
 
-export const { incrementImageIndex } = imagesSlice.actions;
+export const { incrementImageIndex, addFavorite } = imagesSlice.actions;
 
 export default imagesSlice.reducer;
