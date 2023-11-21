@@ -7,6 +7,7 @@ import Root from './routes/Root';
 import List from './routes/List';
 import Vote from './routes/Vote';
 import Favorites from './routes/Favorites';
+import ListItem from './routes/ListItem';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <List />
+      },
+      {
+        path: "/list/:id",
+        element: <ListItem />
       },
       {
         path: "/about",
