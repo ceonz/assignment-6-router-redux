@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import imagesReducer from '../imagesSlice';
+import imagesReducer from '../features/imagesSlice';
 
-export const store = configureStore({
+export default configureStore({
   reducer: {
     images: imagesReducer
   }
