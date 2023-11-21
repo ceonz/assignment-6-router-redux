@@ -9,6 +9,7 @@ import Favorites from './routes/Favorites';
 import ListItem from './routes/ListItem';
 import store from './app/store'
 import { Provider } from 'react-redux'
+import App from './App';
 
 const router = createHashRouter([
   {
