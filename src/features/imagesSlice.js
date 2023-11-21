@@ -11,12 +11,18 @@ export const imagesSlice = createSlice({
     incrementImageIndex: state => {
       state.currentImageIndex = (state.currentImageIndex + 1)% state.catImages.length;
     },
-    addFavorite: state => {
+    setCatImages: (state, action) => {
+      state.catImages = action.payload;
+    },
+    addFavorite: (state, action) => {
       state.favorites.push(action.payload);
+    },
+    removeFavorite: (state, action) => {
+      state.favorites = state.favorites.filter(fav => fav.id !== action.payload);
     },
   }
 });
 
-export const { incrementImageIndex, addFavorite } = imagesSlice.actions;
+export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite } = imagesSlice.actions;
 
 export default imagesSlice.reducer;

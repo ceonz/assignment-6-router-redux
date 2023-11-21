@@ -28,7 +28,7 @@ const router = createHashRouter([
         element: <Vote />
       },
       {
-        path: "/contact",
+        path: "/favorites",
         element: <Favorites />
       }
     ]
@@ -37,9 +37,9 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
     <Provider store={store}>
-    <App />
+    <RouterProvider router={router} />
+    {/* <App /> */}
     </Provider>
   </React.StrictMode>
 );
