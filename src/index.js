@@ -4,9 +4,9 @@ import App from './App';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './routes/Root';
-import Home from './routes/Home';
-import About from './routes/About';
-import Contact from './routes/Contact';
+import List from './routes/List';
+import Vote from './routes/Vote';
+import Favorites from './routes/Favorites';
 
 const router = createBrowserRouter([
   {
@@ -15,15 +15,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <List />
       },
       {
         path: "/about",
-        element: <About />
+        element: <Vote />
       },
       {
         path: "/contact",
-        element: <Contact />
+        element: <Favorites />
       }
     ]
   },
