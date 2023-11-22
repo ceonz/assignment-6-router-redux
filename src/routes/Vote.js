@@ -1,6 +1,7 @@
 import React from 'react';
+import { getAllImages } from "../apis";
 import { useSelector, useDispatch } from 'react-redux';
-import { castVote} from '../features/imagesSlice';
+import { castVote, setCurrentImageIndex, setCatImages} from '../features/imagesSlice';
 
 
 export default function Vote(){
@@ -8,7 +9,14 @@ export default function Vote(){
 
   const catImages = useSelector((state) => state.images.catImages);
   const currentImageIndex = useSelector((state) => state.images.currentImageIndex);
-  const voteHistory = useSelector((state) => state.images.favorites);
+  const voteHistory = useSelector((state) => state.images.voteHistory);
+
+  function getCatImages() {
+    getAllImages()
+      .then((data) => {
+        dispatch(setCatImages(data));
+      });
+  }
 
   const handleVote = (catId, value) => {
     const imageUrl = catImages.find((cat) => cat.id === catId)?.url;
@@ -28,7 +36,7 @@ export default function Vote(){
   return (
     <div className="vote-grid">
       {catImages.length === 0 ? (
-        <button onClick={showNextImage}>Start Voting</button>
+        <button onClick={getCatImages}>Start Voting</button>
       ) : (
         catImages[currentImageIndex] && (
           <div key={catImages[currentImageIndex].id} className="voting-card">
@@ -58,22 +66,7 @@ export default function Vote(){
       )}
       <div>
         <h2>Vote History</h2>
-        <ul>
-          {voteHistory.map((vote, index) => (
-            <li key={index}>
-              {vote.imageUrl && (
-                <img
-                  src={vote.imageUrl}
-                  alt={`Cat ${index + 1}`}
-                  width="50"
-                  height="50"
-                  className={vote.value > 0 ? 'liked' : 'disliked'}
-                />
-              )}
-              {vote.value > 0 ? ' Liked' : ' Disliked'}
-            </li>
-          ))}
-        </ul>
+          
       </div>
     </div>
   );
