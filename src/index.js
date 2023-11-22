@@ -9,6 +9,7 @@ import Favorites from './routes/Favorites';
 import ListItem from './routes/ListItem';
 import store from './app/store'
 import { Provider } from 'react-redux'
+import NotFound from './routes/NotFound';
 
 const router = createHashRouter([
   {
@@ -33,13 +34,17 @@ const router = createHashRouter([
       }
     ]
   },
+  {
+    path: "*",
+    element: <NotFound />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
-    {/* <App /> */}
+      <RouterProvider router={router} />
+      {/* <App /> */}
     </Provider>
   </React.StrictMode>
 );
