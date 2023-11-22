@@ -7,6 +7,7 @@ export const imagesSlice = createSlice({
     currentImageIndex: 0,
     favorites: [],
     votes: [],
+    voteHistory: [],
   },
   reducers: {
     incrementImageIndex: state => {
@@ -26,14 +27,13 @@ export const imagesSlice = createSlice({
       state.votes.push(action.payload);
     },
 
-    setCurrentImageIndex: (state, action) => {
-
-    }
-
+    addVoteToHistory: (state, action) => {
+      state.voteHistory.push(action.payload);
+    },
 
   }
 });
 
-export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite, castVote, setCurrentImageIndex } = imagesSlice.actions;
+export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite, castVote, addVoteToHistory } = imagesSlice.actions;
 
 export default imagesSlice.reducer;
