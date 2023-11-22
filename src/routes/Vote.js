@@ -7,7 +7,6 @@ import { castVote, incrementImageIndex, setCatImages, addVoteToHistory } from '.
 
 export default function Vote(){
   const dispatch = useDispatch();
-
   const catImages = useSelector((state) => state.images.catImages);
   const currentImageIndex = useSelector((state) => state.images.currentImageIndex);
   const voteHistory = useSelector((state) => state.images.voteHistory);
