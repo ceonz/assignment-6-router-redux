@@ -26,10 +26,14 @@ export const imagesSlice = createSlice({
       state.votes.push(action.payload);
     },
 
+    setCurrentImageIndex: (state, action) => {
+
+    }
+
 
   }
 });
 
-export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite, castVote } = imagesSlice.actions;
+export const { incrementImageIndex, setCatImages, addFavorite, removeFavorite, castVote, setCurrentImageIndex } = imagesSlice.actions;
 
 export default imagesSlice.reducer;

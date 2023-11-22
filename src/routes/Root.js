@@ -8,7 +8,7 @@ export default function Root() {
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="votes">Votes</Link></li>
+            <li><Link to="vote">Vote</Link></li>
             <li><Link to="favorites">Favorites</Link></li>
           </ul>
         </nav>
